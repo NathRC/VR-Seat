@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Ticket : MonoBehaviour
 {
+
+    public Canvas canvas;
+    private GameObject siegeSelectionne;
     // Start is called before the first frame update
     void Start()
     {
-        
+        canvas.GetComponent<Canvas>().enabled = false;
     }
 
     // Update is called once per frame
@@ -31,6 +36,8 @@ public class Ticket : MonoBehaviour
                         foreach (Transform child in parent.transform){
                             child.gameObject.GetComponent<Renderer>().material.color = yourColor;
                         }
+                        siegeSelectionne = parent;
+                        activate(true);
                     } else if (hit.collider.GetComponent<MeshRenderer>().material.color == yourColor){
                         GameObject parent = hit.collider.gameObject.transform.parent.gameObject;
                         foreach (Transform child in parent.transform){
@@ -42,4 +49,17 @@ public class Ticket : MonoBehaviour
             }
         }
     }
+
+    public void activate(bool isActivated){
+        canvas.GetComponent<Canvas>().enabled = isActivated;
+    }
+
+    public void Disactivate(){
+        canvas.GetComponent<Canvas>().enabled = false;
+
+        foreach (Transform child in siegeSelectionne.transform){
+            child.gameObject.GetComponent<Renderer>().material.color = new Color(1f,0f,0f,1f);
+        }
+    }
+
 }
