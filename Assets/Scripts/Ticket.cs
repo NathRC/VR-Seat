@@ -54,11 +54,19 @@ public class Ticket : MonoBehaviour
         canvas.GetComponent<Canvas>().enabled = isActivated;
     }
 
-    public void Disactivate(){
+    public void DisactivateOk(){
         canvas.GetComponent<Canvas>().enabled = false;
 
         foreach (Transform child in siegeSelectionne.transform){
             child.gameObject.GetComponent<Renderer>().material.color = new Color(1f,0f,0f,1f);
+        }
+    }
+
+    public void DisactivatePasOk(){
+        canvas.GetComponent<Canvas>().enabled = false;
+
+        foreach (Transform child in siegeSelectionne.transform){
+            child.gameObject.GetComponent<Renderer>().material.color = new Color(0f,1f,0f,1f);
         }
     }
 
